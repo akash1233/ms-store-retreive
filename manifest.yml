@@ -1,0 +1,8 @@
+---
+applications:
+- name: store-retreive
+  memory: 512MB
+  host: store-retreive
+  domain: apps-np.homedepot.com
+  path: target/store-retreive-0.0.1-SNAPSHOT.war
+  buildpack: java_buildpack_offline

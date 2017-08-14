@@ -6,13 +6,15 @@ package org.homedepot.model;
 public class StoredValue {
     private String varname;
     private String value;
-    private String param;
 
 
-    public StoredValue(String param) {
-        super();
-        this.varname = param.split("=")[0].toString();
-        this.value = param.split("=")[1].toString();
+    public StoredValue(String varname , String value) {
+        this.varname = varname;
+        this.value = value;
+
+    }
+
+    public StoredValue(){
 
     }
 
@@ -31,22 +33,6 @@ public class StoredValue {
     public void setVarname(String varname) {
         this.varname = varname;
     }
-
-    public String getParam() {
-        return param;
-    }
-
-    public void setParam(String param) {
-        this.param = param;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "StoredValue [varname=%s, value=%s, param=%s]", varname,
-                value, param);
-    }
-
 
 }
 
