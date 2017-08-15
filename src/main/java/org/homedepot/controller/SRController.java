@@ -38,6 +38,7 @@ public class SRController {
 
     }
 
+    //------ Retreives a single param variable
 
     @RequestMapping(value = "/retrivestoredval/{variablename}" , method = RequestMethod.GET)
     public ResponseEntity<?> getVarValue(@PathVariable("variablename") String varName) {
@@ -50,6 +51,9 @@ public class SRController {
         return new ResponseEntity<StoredValue>(storedValue, HttpStatus.OK);
 
     }
+
+
+    // --------- Stores a param value
     @RequestMapping(value = "/storevalue/" ,  method = RequestMethod.POST)
     public ResponseEntity<?> createVarValue(@RequestBody StoredValue storedValue) {
         logger.info("Creating Variable and it's value : " + storedValue);
@@ -62,6 +66,31 @@ public class SRController {
 //        headers.setLocation(uriComponentsBuilder.path("/api/storevalue/{variablename}").buildAndExpand(storedValue.getVarname()).toUri());
         return new ResponseEntity<StoredValue>(storedValue , HttpStatus.CREATED);
     }
+
+
+
+    // ---- update and variable value
+    @RequestMapping(value= "storevalue/{variablename}" , method = RequestMethod.PUT)
+    public ResponseEntity<?> updateVarValue(@PathVariable("variablename") String varName , @RequestBody StoredValue storedValue){
+        logger.info("Updating Variable with name : " + varName + " with the value " + storedValue.getValue());
+       if (storeRetreiveService.updateVarValue(storedValue)){
+           return new ResponseEntity<StoredValue>(storedValue , HttpStatus.OK);
+       } else {
+           logger.error("Variable trying to update not found : " + varName);
+           return new ResponseEntity<CustomeErrorType>(new CustomeErrorType("Unable to updated a variable " + storedValue.getVarname()), HttpStatus.NOT_FOUND);
+       }
+
+
+    }
+
+    // ---- Delete all variable
+    @RequestMapping(value = "/retrivestoredval/" , method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteAllVarsVals(){
+        logger.info("Deleting all variables ");
+        storeRetreiveService.deleteAll();
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    }
+
 
 
 }

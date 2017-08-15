@@ -13,4 +13,7 @@ public interface StoreRetreiveService  {
     boolean		varExits(StoredValue user);
     void		saveVarValue(StoredValue user);
 
+    void deleteAll();
+
+    boolean updateVarValue(StoredValue storedValue);
 }

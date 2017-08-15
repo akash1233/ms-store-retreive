@@ -1,7 +1,6 @@
 package org.homedepot.service;
 
 import org.homedepot.model.StoredValue;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -57,4 +56,23 @@ public class StoreRetreiveServiceImpl implements StoreRetreiveService {
     public void saveVarValue(StoredValue newvarval) {
         storedValues.add(newvarval);
     }
+
+    public void deleteAll() {
+        storedValues.clear();
+    }
+
+
+    public boolean updateVarValue(StoredValue updatedvarval) {
+        for (StoredValue storedValue : storedValues) {
+            if (updatedvarval.getVarname().equalsIgnoreCase(storedValue.getVarname())) {
+                storedValue.setValue(updatedvarval.getValue());
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+
 }
