@@ -15,22 +15,14 @@ import java.util.List;
 public class StoreRetreiveServiceImpl implements StoreRetreiveService {
 
     private List<StoredValue> storedValues;
-    private int counter;
-
 
     @PostConstruct
     public void init() {
 
         System.out.println("Initializing User Service");
-
         storedValues = new ArrayList<StoredValue>();
-        counter = 1;
-
         StoredValue first = new StoredValue("xyz", "2345");
-        StoredValue second = new StoredValue("hamze", "faqeera");
-
         this.saveVarValue(first);
-        this.saveVarValue(second);
 
     }
 
