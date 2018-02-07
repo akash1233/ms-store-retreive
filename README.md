@@ -9,4 +9,6 @@ https://store-retreive.apps-np.homedepot.com/swagger-ui.html
 - TODO's to push it to swagger hub.
 
 - Adding a feature branch and checking the code against that.
-- added a feature 2 
+- added a feature 2 - modified
+- Add a feature xyz
+- did a bug fix on xyz feature readme file 
