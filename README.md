@@ -11,3 +11,4 @@ https://store-retreive.apps-np.homedepot.com/swagger-ui.html
 - Adding a feature branch and checking the code against that.
 - added a feature 2 
 - Add a feature xyz
+- did a bug fix on xyz feature readme file 
