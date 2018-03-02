@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar target/store-retreive-0.0.1-SNAPSHOT.war -Dserver.port=8080
+web: java $JAVA_OPTS -Dserver.port=8001 -jar target/store-retreive-0.0.1-SNAPSHOT.war
