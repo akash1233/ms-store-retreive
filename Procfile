@@ -1,1 +1,1 @@
-worker: java $JAVA_OPTS -jar target/store-retreive-0.0.1-SNAPSHOT.war
+web: java $JAVA_OPTS -war target/store-retreive-0.0.1-SNAPSHOT.war
