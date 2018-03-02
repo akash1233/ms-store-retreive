@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar target/*.war
+web: java $JAVA_OPTS -jar target/store-retreive-0.0.1-SNAPSHOT.war
