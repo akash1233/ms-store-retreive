@@ -2,6 +2,8 @@
 
 This microservice helps in storing an retreiving variables and values over rest api 
 
+[![CircleCI](https://circleci.com/gh/akash1233/ms-store-retreive.svg?style=svg)](https://circleci.com/gh/akash1233/ms-store-retreive)
+
 #### Swagger url 
 
 https://store-retreive.apps-np.homedepot.com/swagger-ui.html
