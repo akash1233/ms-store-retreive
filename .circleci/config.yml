@@ -11,17 +11,17 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
+          key: store-retreive-{{ checksum "pom.xml" }}
       - run: mvn dependency:go-offline
       - save_cache:
           paths:
             - ~/.m2
-          key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
+          key: store-retreive-{{ checksum "pom.xml" }}
       - run: mvn package
       - store_test_results:
           path: target/surefire-reports
       - store_artifacts:
-          path: target/demo-java-spring-0.0.1-SNAPSHOT.jar
+          path: target/store-retreive-0.0.1-SNAPSHOT
       - run: mvn test
   deploy:
       machine:
