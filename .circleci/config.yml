@@ -23,31 +23,31 @@ jobs:
       - store_artifacts:
           path: target/store-retreive-0.0.1-SNAPSHOT
       - run: mvn test
-  deploy:
-      machine:
-          enabled: true
-      working_directory: ~/store-retreive
-      environment:
-        HEROKU_APP: "sleepy-refuge-55486"
-      steps:
-        - checkout
-        - run:
-            name: Setup Heroku
-            command: bash .circleci/setup-heroku.sh
-        - run:
-            command: |
-              git push heroku sequential-branch-filter:master
-              heroku run rake db:migrate
-              sleep 5  # sleep for 5 seconds to wait for dynos
-              heroku restart
+#  deploy:
+#      machine:
+#          enabled: true
+#      working_directory: ~/store-retreive
+#      environment:
+#        HEROKU_APP: "sleepy-refuge-55486"
+#      steps:
+#        - checkout
+#        - run:
+#            name: Setup Heroku
+#            command: bash .circleci/setup-heroku.sh
+#        - run:
+#            command: |
+#              git push heroku sequential-branch-filter:master
+#              heroku run rake db:migrate
+#              sleep 5  # sleep for 5 seconds to wait for dynos
+#              heroku restart
 workflows:
   version: 2
   build-and-deploy:
     jobs:
       - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+#      - deploy:
+#          requires:
+#            - build
+#          filters:
+#            branches:
+#              only: master
