@@ -1,76 +1,93 @@
-node {
-    def mvnHome
-    stage('Preparation') { // for display purposes
-        // Get some code from a GitHub repository
-        git 'https://github.com/akash1233/ms-store-retreive.git'
-        // Get the Maven tool.
-        // ** NOTE: This 'M3' Maven tool must be configured
-        // **       in the global configuration.
-        mvnHome = tool 'M3'
-    }
-    stage('Clean') {
-        // Run the maven build
-        if (isUnix()) {
-            sh "'${mvnHome}/bin/mvn' clean "
-        } else {
-            bat(/"${mvnHome}\bin\mvn" clean /)
-        }
-    }
-
-    stage('Build') {
-        // Run the maven build
-        if (isUnix()) {
-            sh "'${mvnHome}/bin/mvn' compile "
-        } else {
-            bat(/"${mvnHome}\bin\mvn" compile /)
-        }
-    }
-//    stage('quality checks') {
+//node {
+//    def mvnHome
+//    stage('Preparation') { // for display purposes
+//        // Get some code from a GitHub repository
+//        git 'https://github.com/akash1233/ms-store-retreive.git'
+//        // Get the Maven tool.
+//        // ** NOTE: This 'M3' Maven tool must be configured
+//        // **       in the global configuration.
+//        mvnHome = tool 'M3'
+//    }
+//    stage('Clean') {
+//        // Run the maven build
+//        if (isUnix()) {
+//            sh "'${mvnHome}/bin/mvn' clean "
+//        } else {
+//            bat(/"${mvnHome}\bin\mvn" clean /)
+//        }
+//    }
+//
+//    stage('Build') {
+//        // Run the maven build
+//        if (isUnix()) {
+//            sh "'${mvnHome}/bin/mvn' compile "
+//        } else {
+//            bat(/"${mvnHome}\bin\mvn" compile /)
+//        }
+//    }
+////    stage('quality checks') {
+////        parallel {
+////            stage('unit-test') {
+////                // Run the maven build
+////                if (isUnix()) {
+////                    sh "'${mvnHome}/bin/mvn' test"
+////                } else {
+////                    bat(/"${mvnHome}\bin\mvn" test/)
+////                }
+////            }
+////            stage('sonar-scan') {
+////                // Run the maven build
+////                if (isUnix()) {
+////                    sh "'${mvnHome}/bin/mvn' sonar:sonar -Dsonar.host.url=http://ec2-34-212-9-250.us-west-2.compute.amazonaws.com:9000 -Dsonar.login=12d340f32636babddb5f2488ecb7a4a71c6168f7"
+////                } else {
+////                    bat(/"${mvnHome}\bin\mvn" sonar:sonar /)
+////                }
+////            }
+////        }
+////    }
+//    stage("Testing") {
 //        parallel {
-//            stage('unit-test') {
-//                // Run the maven build
-//                if (isUnix()) {
-//                    sh "'${mvnHome}/bin/mvn' test"
-//                } else {
-//                    bat(/"${mvnHome}\bin\mvn" test/)
+//            stage("Unit Tests") {
+//                steps {
+//                    sh 'java -version'
 //                }
 //            }
-//            stage('sonar-scan') {
-//                // Run the maven build
-//                if (isUnix()) {
-//                    sh "'${mvnHome}/bin/mvn' sonar:sonar -Dsonar.host.url=http://ec2-34-212-9-250.us-west-2.compute.amazonaws.com:9000 -Dsonar.login=12d340f32636babddb5f2488ecb7a4a71c6168f7"
-//                } else {
-//                    bat(/"${mvnHome}\bin\mvn" sonar:sonar /)
+//            stage("Functional Tests") {
+//                steps {
+//                    sh 'java -version'
+//                }
+//            }
+//            stage("Integration Tests") {
+//                steps {
+//                    sh 'java -version'
 //                }
 //            }
 //        }
 //    }
-    stage("Testing") {
-        parallel {
-            stage("Unit Tests") {
-                steps {
-                    sh 'java -version'
-                }
-            }
-            stage("Functional Tests") {
-                steps {
-                    sh 'java -version'
-                }
-            }
-            stage("Integration Tests") {
-                steps {
-                    sh 'java -version'
-                }
-            }
-        }
-    }
-    stage('package') {
-        // Run the maven build
-        if (isUnix()) {
-            sh "'${mvnHome}/bin/mvn' package"
-        } else {
-            bat(/"${mvnHome}\bin\mvn" package/)
-        }
-    }
+//    stage('package') {
+//        // Run the maven build
+//        if (isUnix()) {
+//            sh "'${mvnHome}/bin/mvn' package"
+//        } else {
+//            bat(/"${mvnHome}\bin\mvn" package/)
+//        }
+//    }
+//
+//}
 
+
+node {
+    stage("Build/Test") {
+        parallel(
+                "b1": {
+                    sh 'ping -c 5 localhost'
+                },
+                "b2": {
+                    sh 'ping -c 10 localhost'
+                },
+                "b3": {
+                    sh 'ping -c 20 localhost'
+                }
+        )
+    }
 }
