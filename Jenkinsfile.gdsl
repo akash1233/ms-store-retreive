@@ -36,25 +36,6 @@ node {
         )
     }
 
-    stage("Testing") {
-        parallel {
-            stage("Unit Tests") {
-                steps {
-                    sh 'java -version'
-                }
-            }
-            stage("Functional Tests") {
-                steps {
-                    sh 'java -version'
-                }
-            }
-            stage("Integration Tests") {
-                steps {
-                    sh 'java -version'
-                }
-            }
-        }
-    }
     stage('package') {
         // Run the maven build
         if (isUnix()) {
