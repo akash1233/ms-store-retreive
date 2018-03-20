@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+    def mvnHome
+    stage('Preparation') { // for display purposes
+        // Get some code from a GitHub repository
+        git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+        // Get the Maven tool.
+        // ** NOTE: This 'M3' Maven tool must be configured
+        // **       in the global configuration.
+        mvnHome = tool 'M3'
+    }
+    stage('Clean') {
+        // Run the maven build
+        if (isUnix()) {
+            sh "'${mvnHome}/bin/mvn' clean "
+        } else {
+            bat(/"${mvnHome}\bin\mvn" clean /)
+        }
+    }
+
+    stage('Build') {
+        // Run the maven build
+        if (isUnix()) {
+            sh "'${mvnHome}/bin/mvn' compile "
+        } else {
+            bat(/"${mvnHome}\bin\mvn" compile /)
+        }
+    }
+    stage('test') {
+        // Run the maven build
+        if (isUnix()) {
+            sh "'${mvnHome}/bin/mvn' test"
+        } else {
+            bat(/"${mvnHome}\bin\mvn" test/)
+        }
+    }
+    stage('package') {
+        // Run the maven build
+        if (isUnix()) {
+            sh "'${mvnHome}/bin/mvn' package"
+        } else {
+            bat(/"${mvnHome}\bin\mvn" package/)
+        }
+    }
+
+}
