@@ -45,16 +45,23 @@ node {
 //            }
 //        }
 //    }
-    stage('run-parallel-branches') {
-        steps {
-            parallel(
-                    a: {
-                        echo "This is branch a"
-                    },
-                    b: {
-                        echo "This is branch b"
-                    }
-            )
+    stage("Testing") {
+        parallel {
+            stage("Unit Tests") {
+                steps {
+                    sh 'java -version'
+                }
+            }
+            stage("Functional Tests") {
+                steps {
+                    sh 'java -version'
+                }
+            }
+            stage("Integration Tests") {
+                steps {
+                    sh 'java -version'
+                }
+            }
         }
     }
     stage('package') {
