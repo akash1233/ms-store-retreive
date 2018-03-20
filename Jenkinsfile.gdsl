@@ -34,7 +34,7 @@ node {
                     sh "'${mvnHome}/bin/mvn' sonar:sonar -Dsonar.host.url=http://ec2-34-212-9-250.us-west-2.compute.amazonaws.com:9000 -Dsonar.login=12d340f32636babddb5f2488ecb7a4a71c6168f7"
                 },
 
-                "fortify-scan-TBD": {
+                "fortify-scan_TBD": {
                     echo "tbd"
                 }
 
@@ -51,17 +51,17 @@ node {
         }
     }
 
-    stage('Deploy-Dev-heroku-and-CF-TBD') {
+    stage('Deploy-Dev-heroku-and-CF_TBD') {
         //Deploy through Heroku and CF
         echo "TBD"
     }
 
-    stage('Functional-Tests-TBD') {
+    stage('Functional-Tests_TBD') {
         //Deploy through Heroku and CF
         echo "TBD"
     }
 
-    stage('Merge-Dev-Master-TBD') {
+    stage('Merge_Dev->Master_TBD') {
         //Deploy through Heroku and CF
         echo "TBD"
     }
