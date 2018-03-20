@@ -25,25 +25,36 @@ node {
             bat(/"${mvnHome}\bin\mvn" compile /)
         }
     }
-    stage('quality checks') {
-        parallel {
-            stage('unit-test') {
-                // Run the maven build
-                if (isUnix()) {
-                    sh "'${mvnHome}/bin/mvn' test"
-                } else {
-                    bat(/"${mvnHome}\bin\mvn" test/)
-                }
-            }
-            stage('sonar-scan') {
-                // Run the maven build
-
-                if (isUnix()) {
-                    sh "'${mvnHome}/bin/mvn' sonar:sonar -Dsonar.host.url=http://ec2-34-212-9-250.us-west-2.compute.amazonaws.com:9000 -Dsonar.login=12d340f32636babddb5f2488ecb7a4a71c6168f7"
-                } else {
-                    bat(/"${mvnHome}\bin\mvn" sonar:sonar /)
-                }
-            }
+//    stage('quality checks') {
+//        parallel {
+//            stage('unit-test') {
+//                // Run the maven build
+//                if (isUnix()) {
+//                    sh "'${mvnHome}/bin/mvn' test"
+//                } else {
+//                    bat(/"${mvnHome}\bin\mvn" test/)
+//                }
+//            }
+//            stage('sonar-scan') {
+//                // Run the maven build
+//                if (isUnix()) {
+//                    sh "'${mvnHome}/bin/mvn' sonar:sonar -Dsonar.host.url=http://ec2-34-212-9-250.us-west-2.compute.amazonaws.com:9000 -Dsonar.login=12d340f32636babddb5f2488ecb7a4a71c6168f7"
+//                } else {
+//                    bat(/"${mvnHome}\bin\mvn" sonar:sonar /)
+//                }
+//            }
+//        }
+//    }
+    stage('run-parallel-branches') {
+        steps {
+            parallel(
+                    a: {
+                        echo "This is branch a"
+                    },
+                    b: {
+                        echo "This is branch b"
+                    }
+            )
         }
     }
     stage('package') {
