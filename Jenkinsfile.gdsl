@@ -51,17 +51,17 @@ node {
         }
     }
 
-    stage('Deploy-Dev-heroku-and-CF') {
+    stage('Deploy-Dev-heroku-and-CF-TBD') {
         //Deploy through Heroku and CF
         echo "TBD"
     }
 
-    stage('Functional-Tests') {
+    stage('Functional-Tests-TBD') {
         //Deploy through Heroku and CF
         echo "TBD"
     }
 
-    stage('Merge-Dev-Master') {
+    stage('Merge-Dev-Master-TBD') {
         //Deploy through Heroku and CF
         echo "TBD"
     }
