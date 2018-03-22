@@ -53,7 +53,9 @@ node {
 
     stage('Deploy-Dev-heroku-and-CF_TBD') {
         //Deploy through Heroku and CF
-        sh "su apt-get install cf-cli"
+        sh "curl -L \"https://cli.run.pivotal.io/stable?release=macosx64-binary&source=github\" | tar -zx"
+        sh "mv cf /usr/local/bin"
+        sh "cf --version"
     }
 
     stage('Functional-Tests_TBD') {
