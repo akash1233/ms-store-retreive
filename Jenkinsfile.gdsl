@@ -43,7 +43,7 @@ node {
     }
 
     stage('package') {
-        // Run the maven build
+        // Package the application
         if (isUnix()) {
             sh "'${mvnHome}/bin/mvn' package"
         } else {
@@ -53,7 +53,7 @@ node {
 
     stage('Deploy-Dev-heroku-and-CF_TBD') {
         //Deploy through Heroku and CF
-        echo "TBD"
+        sh "apt-get install cf-cli"
     }
 
     stage('Functional-Tests_TBD') {
