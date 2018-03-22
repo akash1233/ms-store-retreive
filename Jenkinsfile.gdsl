@@ -53,7 +53,7 @@ node {
 
     stage('deploy-dev-cloud-foundry') {
         //Deploy through Heroku and CF
-        sh "./ci-cd/cf-deploy.sh"
+        sh "./ci-cd/ ....cf-deploy.sh"
         sh "./cf --version"
     }
 
