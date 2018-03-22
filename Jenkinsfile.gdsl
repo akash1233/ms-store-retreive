@@ -53,7 +53,7 @@ node {
 
     stage('Deploy-Dev-heroku-and-CF_TBD') {
         //Deploy through Heroku and CF
-        sh "apt-get install cf-cli"
+        sh "sudo apt-get install cf-cli"
     }
 
     stage('Functional-Tests_TBD') {
