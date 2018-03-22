@@ -25,7 +25,7 @@ node {
             bat(/"${mvnHome}\bin\mvn" compile /)
         }
     }
-    stage('quality checks') {
+    stage('quality-checks') {
         parallel(
                 "unit-test": {
                     sh "'${mvnHome}/bin/mvn' test"
@@ -51,18 +51,18 @@ node {
         }
     }
 
-    stage('Deploy-Dev-Cloud-Foundry') {
+    stage('deploy-dev-cloud-foundry') {
         //Deploy through Heroku and CF
         sh "./ci-cd/cf-deploy.sh"
         sh "./cf --version"
     }
 
-    stage('Functional-Tests_TBD') {
+    stage('functional-tests_tbd') {
         //Deploy through Heroku and CF
         echo "TBD"
     }
 
-    stage('Merge_Dev->Master_TBD') {
+    stage('merge_dev->master_tbd') {
         //Deploy through Heroku and CF
         echo "TBD"
     }
