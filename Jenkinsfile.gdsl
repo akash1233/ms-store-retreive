@@ -51,7 +51,7 @@ node {
         }
     }
 
-    stage('Deploy-Dev-heroku-and-CF_TBD') {
+    stage('Deploy-Dev-Cloud-Foundry') {
         //Deploy through Heroku and CF
         sh "curl -L \"https://cli.run.pivotal.io/stable?release=linux64-binary\" | tar -zx"
         sh "./cf --version"
