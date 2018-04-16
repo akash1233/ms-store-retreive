@@ -1,11 +1,13 @@
 node {
     def mvnHome
-    stage('Preparation') { // for display purposes
-        // Get some code from a GitHub repository
-        git 'https://github.com/akash1233/ms-store-retreive.git'
-        // Get the Maven tool.
-        // ** NOTE: This 'M3' Maven tool must be configured
-        // **       in the global configuration.
+    stage('Checkout ') {
+        checkout([
+                $class                           : 'GitSCM',
+                branches                         : [[name: '*/testing-branch']],
+                extensions                       : [[$class: 'CleanCheckout']],
+                userRemoteConfigs                : [[credentialsId: 'CYS-Git', url: 'https://code.cognizant.com/dcoe/qi-workbench.git']],
+                doGenerateSubmoduleConfigurations: false
+        ])
         mvnHome = tool 'M3'
     }
     stage('Clean') {
@@ -25,47 +27,47 @@ node {
             bat(/"${mvnHome}\bin\mvn" compile /)
         }
     }
-    stage('quality-checks') {
-        parallel(
-                "unit-test": {
-                    sh "'${mvnHome}/bin/mvn' test"
-                },
-                "sonar-scan": {
-                    sh "'${mvnHome}/bin/mvn' sonar:sonar -Dsonar.host.url=http://ec2-34-212-9-250.us-west-2.compute.amazonaws.com:9000 -Dsonar.login=12d340f32636babddb5f2488ecb7a4a71c6168f7"
-                },
-
-                "fortify-scan_TBD": {
-                    echo "tbd"
-                }
-
-
-        )
-    }
-
-    stage('package') {
-        // Package the application
-        if (isUnix()) {
-            sh "'${mvnHome}/bin/mvn' package"
-        } else {
-            bat(/"${mvnHome}\bin\mvn" package/)
-        }
-    }
-
-    stage('deploy-dev-cloud-foundry') {
-        //Deploy through Heroku and CF
-        sh "./ci-cd/cf-deploy.sh"
-        sh "./cf --version"
-    }
-
-    stage('functional-tests_tbd') {
-        //Deploy through Heroku and CF
-        echo "TBD"
-    }
-
-    stage('merge_dev->master_tbd') {
-        //Deploy through Heroku and CF
-        echo "TBD"
-    }
+//    stage('quality-checks') {
+//        parallel(
+//                "unit-test": {
+//                    sh "'${mvnHome}/bin/mvn' test"
+//                },
+//                "sonar-scan": {
+//                    sh "'${mvnHome}/bin/mvn' sonar:sonar -Dsonar.host.url=http://ec2-34-212-9-250.us-west-2.compute.amazonaws.com:9000 -Dsonar.login=12d340f32636babddb5f2488ecb7a4a71c6168f7"
+//                },
+//
+//                "fortify-scan_TBD": {
+//                    echo "tbd"
+//                }
+//
+//
+//        )
+//    }
+//
+//    stage('package') {
+//        // Package the application
+//        if (isUnix()) {
+//            sh "'${mvnHome}/bin/mvn' package"
+//        } else {
+//            bat(/"${mvnHome}\bin\mvn" package/)
+//        }
+//    }
+//
+//    stage('deploy-dev-cloud-foundry') {
+//        //Deploy through Heroku and CF
+//        sh "./ci-cd/cf-deploy.sh"
+//        sh "./cf --version"
+//    }
+//
+//    stage('functional-tests_tbd') {
+//        //Deploy through Heroku and CF
+//        echo "TBD"
+//    }
+//
+//    stage('merge_dev->master_tbd') {
+//        //Deploy through Heroku and CF
+//        echo "TBD"
+//    }
 
 
 }
