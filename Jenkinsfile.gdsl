@@ -57,7 +57,7 @@ node {
         sh "./cf --version"
     }
 
-    stage('functional-tests_tbd') {
+    stage('functional-tests') {
         //Deploy through Heroku and CF
         echo "TBD"
     }
