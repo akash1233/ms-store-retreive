@@ -71,9 +71,6 @@ node {
         )
     }
 
-    stage('cleanup-all-directories') {
-        deleteDir()
-    }
 
     stage('create-pull-request-develop->master') {
         //Deploy through Heroku and CF
