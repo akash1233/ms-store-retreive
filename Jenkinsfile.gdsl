@@ -41,14 +41,6 @@ node {
 
         )
     }
- // posting the test results
-    post {
-        always {
-
-            junit 'target/surefire-reports/*.xml'
-        }
-    }
-
     stage('package-push-to-artifactory') {
         // Package the application
         if (isUnix()) {
@@ -79,12 +71,6 @@ node {
         )
     }
 
-    post {
-        always {
-            junit 'target/sure-reports/*.xml'
-        }
-    }
-
     stage('cleanup-all-directories') {
         deleteDir()
     }
@@ -94,6 +80,11 @@ node {
         echo "TBD- needs to be fixed"
     }
 
+    post {
+        always {
+            junit 'target/surefire-reports/*.xml'
+        }
+    }
 
 }
 
