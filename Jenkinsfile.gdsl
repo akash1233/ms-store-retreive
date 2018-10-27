@@ -1,6 +1,7 @@
 node {
     def mvnHome
     stage('Preparation') { // for display purposes
+        deleteDir()
         // Get some code from a GitHub repository
         git branch: 'develop', url: 'https://github.com/akash1233/ms-store-retreive.git'
         // Get the Maven tool.
@@ -66,13 +67,16 @@ node {
                 "ui-tests": {
                     git branch: 'master', url: 'https://github.com/akash1233/cucumber-jvm-selenium-example.git'
                     sh "ls -al"
-                    sh "'${mvnHome}/bin/mvn' surefire:test"
+                    sh "'${mvnHome}/bin/mvn' test"
                 }
         )
     }
 
+    stage('cleanup-all-directories') {
+        deleteDir()
+    }
 
-    stage('merge_dev->master_actions') {
+    stage('create-pull-request-develop->master') {
         //Deploy through Heroku and CF
         echo "TBD- needs to be fixed"
     }
