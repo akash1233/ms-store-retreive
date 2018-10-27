@@ -58,8 +58,17 @@ node {
     }
 
     stage('functional-tests') {
-        //Deploy through Heroku and CF
-        sh "'${mvnHome}/bin/mvn' failsafe:integration-test"
+        parallel(
+                "service-tests" :
+                        {
+                            sh "'${mvnHome}/bin/mvn' failsafe:integration-test"
+                        },
+                "ui-tests"
+                {
+                    git 'https://github.com/akash1233/cucumber-jvm-selenium-example.git'
+                    sh "'${mvnHome}/bin/mvn' failsafe:integration-test"
+                }
+        )
     }
 
     stage('merge_dev->master_actions') {
