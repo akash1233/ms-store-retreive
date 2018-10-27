@@ -78,7 +78,7 @@ node {
 
     stage('create-pull-request-develop->master') {
         //Deploy through Heroku and CF
-        echo "TBD- needs to be fixed"
+        echo "TBD- Through PR pipeline functionality"
     }
 
 
