@@ -65,7 +65,8 @@ node {
                 },
                 "ui-tests": {
                     git 'https://github.com/akash1233/cucumber-jvm-selenium-example.git'
-                    sh "'${mvnHome}/bin/mvn' failsafe:integration-test"
+                    sh "cd cucumber-jvm-selenium-example"
+                    sh "'${mvnHome}/bin/mvn' test"
                 }
         )
     }
