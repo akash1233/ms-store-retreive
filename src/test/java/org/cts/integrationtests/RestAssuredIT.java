@@ -18,7 +18,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class RestAssuredIT {
     @Before
     public void setUpTest() {
-//        RestAssured.baseURI = "https://store-retreive.cfapps.io/api";
+        RestAssured.baseURI = "https://store-retreive.cfapps.io/api";
     }
 
     @Test
