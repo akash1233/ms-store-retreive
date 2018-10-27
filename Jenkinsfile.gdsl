@@ -1,6 +1,5 @@
-pipeline {
-    agent {master}
-//    def mvnHome
+node {
+    def mvnHome
     stage('Preparation') { // for display purposes
         deleteDir()
         // Get some code from a GitHub repository
@@ -33,6 +32,7 @@ pipeline {
         parallel(
                 "unit-test": {
                     sh "'${mvnHome}/bin/mvn' test"
+                    junit "target/surefire-reports/*.xml"
                 },
                 "sonar-scan": {
                     sh "'${mvnHome}/bin/mvn' sonar:sonar -Dsonar.host.url=http://ec2-34-212-9-250.us-west-2.compute.amazonaws.com:9000 -Dsonar.login=12d340f32636babddb5f2488ecb7a4a71c6168f7"
@@ -78,11 +78,6 @@ pipeline {
         echo "TBD- needs to be fixed"
     }
 
-    post {
-        always {
-            junit 'target/surefire-reports/*.xml'
-        }
-    }
 
 }
 
