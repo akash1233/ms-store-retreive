@@ -16,6 +16,11 @@ node {
         } else {
             bat(/"${mvnHome}\bin\mvn" clean /)
         }
+        post {
+            always {
+                junit 'target/sure-reports/*.xml'
+            }
+        }
     }
 
     stage('Build') {
@@ -70,6 +75,12 @@ node {
                     sh "'${mvnHome}/bin/mvn' test"
                 }
         )
+    }
+
+    post {
+        always {
+            junit 'target/sure-reports/*.xml'
+        }
     }
 
     stage('cleanup-all-directories') {
