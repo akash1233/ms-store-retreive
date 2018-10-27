@@ -16,11 +16,6 @@ node {
         } else {
             bat(/"${mvnHome}\bin\mvn" clean /)
         }
-        post {
-            always {
-                junit 'target/sure-reports/*.xml'
-            }
-        }
     }
 
     stage('Build') {
@@ -45,7 +40,14 @@ node {
                 }
 
         )
+
+        post {
+            always {
+                junit 'target/sure-reports/*.xml'
+            }
+        }
     }
+
 
     stage('package-push-to-artifactory') {
         // Package the application
