@@ -38,7 +38,6 @@ node {
                     echo "to be integrated"
                 }
 
-
         )
     }
 
@@ -57,23 +56,24 @@ node {
         sh "./cf --version"
     }
 
-    stage('functional-tests') {
+
+
+    stage('functional-ui-service-tests') {
         parallel(
-                "service-tests" :
-                        {
-                            sh "'${mvnHome}/bin/mvn' failsafe:integration-test"
-                        },
-                "ui-tests"
-                {
+                "service-tests": {
+                    sh "'${mvnHome}/bin/mvn' failsafe:integration-test"
+                },
+                "ui-tests": {
                     git 'https://github.com/akash1233/cucumber-jvm-selenium-example.git'
                     sh "'${mvnHome}/bin/mvn' failsafe:integration-test"
                 }
         )
     }
 
+
     stage('merge_dev->master_actions') {
         //Deploy through Heroku and CF
-        echo "TBD"
+        echo "TBD- needs to be fixed"
     }
 
 
