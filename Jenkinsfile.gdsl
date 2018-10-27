@@ -2,7 +2,7 @@ node {
     def mvnHome
     stage('Preparation') { // for display purposes
         // Get some code from a GitHub repository
-        git 'https://github.com/akash1233/ms-store-retreive.git'
+        git 'git branch: \'develop\', url: \'https://github.com/akash1233/ms-store-retreive\''
         // Get the Maven tool.
         // ** NOTE: This 'M3' Maven tool must be configured
         // **       in the global configuration.
