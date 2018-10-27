@@ -1,4 +1,5 @@
-node {
+pipeline {
+    agent master
     def mvnHome
     stage('Preparation') { // for display purposes
         deleteDir()
@@ -9,6 +10,7 @@ node {
         // **       in the global configuration.
         mvnHome = tool 'M3'
     }
+
     stage('Clean') {
         // Run the maven build
         if (isUnix()) {
@@ -26,6 +28,7 @@ node {
             bat(/"${mvnHome}\bin\mvn" compile /)
         }
     }
+
     stage('quality-checks') {
         parallel(
                 "unit-test": {
@@ -41,6 +44,7 @@ node {
 
         )
     }
+
     stage('package-push-to-artifactory') {
         // Package the application
         if (isUnix()) {
@@ -56,8 +60,6 @@ node {
         sh "./cf --version"
     }
 
-
-
     stage('functional-ui-service-tests') {
         parallel(
                 "service-tests": {
@@ -70,7 +72,6 @@ node {
                 }
         )
     }
-
 
     stage('create-pull-request-develop->master') {
         //Deploy through Heroku and CF
