@@ -73,7 +73,7 @@ node {
 
     stage('merge_dev->master_actions') {
         //Deploy through Heroku and CF
-        echo "TBD"
+        echo "TBD- needs to be fixed"
     }
 
 
