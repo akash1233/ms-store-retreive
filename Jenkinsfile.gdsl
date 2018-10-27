@@ -44,7 +44,8 @@ node {
  // posting the test results
     post {
         always {
-            junit 'target/sure-reports/*.xml'
+
+            junit 'target/surefire-reports/*.xml'
         }
     }
 
