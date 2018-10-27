@@ -40,14 +40,13 @@ node {
                 }
 
         )
-
-        post {
-            always {
-                junit 'target/sure-reports/*.xml'
-            }
+    }
+ // posting the test results
+    post {
+        always {
+            junit 'target/sure-reports/*.xml'
         }
     }
-
 
     stage('package-push-to-artifactory') {
         // Package the application
