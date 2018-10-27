@@ -64,11 +64,14 @@ node {
         parallel(
                 "service-tests": {
                     sh "'${mvnHome}/bin/mvn' failsafe:integration-test"
+                    junit "target/failsafe-reports/*.xml"
                 },
                 "ui-tests": {
                     git branch: 'master', url: 'https://github.com/akash1233/cucumber-jvm-selenium-example.git'
                     sh "ls -al"
                     sh "'${mvnHome}/bin/mvn' test"
+                    junit "target/surefire-reports/*.xml"
+
                 }
         )
     }
