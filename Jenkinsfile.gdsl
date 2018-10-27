@@ -2,7 +2,7 @@ node {
     def mvnHome
     stage('Preparation') { // for display purposes
         // Get some code from a GitHub repository
-        git 'git branch: \'develop\', url: \'https://github.com/akash1233/ms-store-retreive\''
+        git branch: 'develop', url: 'https://github.com/akash1233/ms-store-retreive.git'
         // Get the Maven tool.
         // ** NOTE: This 'M3' Maven tool must be configured
         // **       in the global configuration.
@@ -64,7 +64,7 @@ node {
                     sh "'${mvnHome}/bin/mvn' failsafe:integration-test"
                 },
                 "ui-tests": {
-                    git 'git branch: \'master\', url: \'https://github.com/akash1233/cucumber-jvm-selenium-example\''
+                    git branch: 'master', url: 'https://github.com/akash1233/cucumber-jvm-selenium-example.git'
                     sh "'${mvnHome}/bin/mvn' surefire:test"
                 }
         )
