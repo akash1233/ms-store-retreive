@@ -1,4 +1,4 @@
-package org.homedepot;
+package org.cts;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +17,6 @@ import static springfox.documentation.builders.PathSelectors.regex;
 public class SwaggerConfig {
     @Bean
     public Docket storeRetreiveApi(){
-        return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.basePackage("org.homedepot.controller")).paths(regex("/api.*")).build();
+        return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.basePackage("org.cts.controller")).paths(regex("/api.*")).build();
     }
 }

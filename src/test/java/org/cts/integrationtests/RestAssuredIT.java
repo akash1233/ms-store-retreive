@@ -1,4 +1,4 @@
-package org.homedepot.integrationtests;
+package org.cts.integrationtests;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -6,15 +6,10 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import io.restassured.RestAssured.*;
-import io.restassured.matcher.RestAssuredMatchers.*;
-import org.hamcrest.Matchers.*;
 
 import java.util.Arrays;
 
 import static io.restassured.RestAssured.get;
-import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 /**

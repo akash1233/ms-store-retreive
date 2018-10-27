@@ -1,6 +1,6 @@
-package org.homedepot.service;
+package org.cts.service;
 
-import org.homedepot.model.StoredValue;
+import org.cts.model.StoredValue;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;

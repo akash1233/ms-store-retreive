@@ -1,4 +1,4 @@
-package org.homedepot.model;
+package org.cts.model;
 
 /**
  * Created by dharma on 8/11/17.
