@@ -8,7 +8,10 @@ This microservice helps in storing an retreiving variables and values over rest 
 
 #### Swagger url 
 
-http://localhots:8080/swagger-ui.html
+http://localhotss:8080/swagger-ui.html
 
-- TODO's to push it to swagger hub- In progress
-- Deploy it cf 
+
+TODO 
+
+
+Defects 

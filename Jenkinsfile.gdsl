@@ -1,13 +1,15 @@
 node {
     def mvnHome
     stage('Preparation') { // for display purposes
+        deleteDir()
         // Get some code from a GitHub repository
-        git 'git branch: \'develop\', url: \'https://github.com/akash1233/ms-store-retreive\''
+        git branch: 'develop', url: 'https://github.com/akash1233/ms-store-retreive.git'
         // Get the Maven tool.
         // ** NOTE: This 'M3' Maven tool must be configured
         // **       in the global configuration.
         mvnHome = tool 'M3'
     }
+
     stage('Clean') {
         // Run the maven build
         if (isUnix()) {
@@ -25,10 +27,12 @@ node {
             bat(/"${mvnHome}\bin\mvn" compile /)
         }
     }
+
     stage('quality-checks') {
         parallel(
                 "unit-test": {
                     sh "'${mvnHome}/bin/mvn' test"
+                    junit "target/surefire-reports/*.xml"
                 },
                 "sonar-scan": {
                     sh "'${mvnHome}/bin/mvn' sonar:sonar -Dsonar.host.url=http://ec2-34-212-9-250.us-west-2.compute.amazonaws.com:9000 -Dsonar.login=12d340f32636babddb5f2488ecb7a4a71c6168f7"
@@ -56,24 +60,25 @@ node {
         sh "./cf --version"
     }
 
-
-
     stage('functional-ui-service-tests') {
         parallel(
                 "service-tests": {
                     sh "'${mvnHome}/bin/mvn' failsafe:integration-test"
+           /*         junit "target/failsafe-reports.xml"*/
                 },
                 "ui-tests": {
-                    git 'https://github.com/akash1233/cucumber-jvm-selenium-example.git'
-                    sh "'${mvnHome}/bin/mvn' surefire:test"
+                    git branch: 'master', url: 'https://github.com/akash1233/cucumber-jvm-selenium-example.git'
+                    sh "ls -al"
+                    sh "'${mvnHome}/bin/mvn' test"
+                    junit "target/surefire-reports/*.xml"
+
                 }
         )
     }
 
-
-    stage('merge_dev->master_actions') {
+    stage('create-pull-request-develop->master') {
         //Deploy through Heroku and CF
-        echo "TBD- needs to be fixed"
+        echo "TBD- Through PR pipeline functionality"
     }
 
 
