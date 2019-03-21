@@ -1,7 +1,7 @@
 ---
 applications:
-- name: store-retreive
+- name: cts-store-retreive
   memory: 1GB
-  host: store-retreive
+  host: cts-store-retreive
   path: target/store-retreive-0.0.1-SNAPSHOT.war
   buildpack: java_buildpack
