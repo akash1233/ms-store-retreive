@@ -11,5 +11,7 @@ This microservice helps in storing an retreiving variables and values over rest 
 http://localhots:8080/swagger-ui.html
 
 - TODO's to push it to swagger hub- In progress
-- Deploy it cf | 
+- Deploy it cf 
+- Testing devops pip
+
 
