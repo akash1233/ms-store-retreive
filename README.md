@@ -14,13 +14,5 @@ http://localhots:8080/swagger-ui.html
 - Deploy it cf 
 - Testing devops pip
 - Demo Run
-- Demo Run 1
-- Demo Run 2
-- Demo Run 3
-- Demo 4
-- Demo 5
-- Demo 6
-- Demo 7
-- Demo 8
 
 
