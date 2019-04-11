@@ -24,6 +24,9 @@
         <sonar.projectVersion>master</sonar.projectVersion>
         <!--<sonar.test.exclusions>**/test/**/*.*</sonar.test.exclusions>-->
         <!--<sonar.exclusions>**/ai/**/*.*,**/jdbc/**/*.*,**/mpt/**/*.*,**/jcr/**/*.*,**/JDBC*</sonar.exclusions>-->
+         <skipTests>false</skipTests>
+    	<skipITs>${skipTests}</skipITs>
+    	<skipUTs>${skipTests}</skipUTs>
     </properties>
     <dependencies>
         <dependency>
@@ -79,6 +82,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.9</version>
+                <configuration>
+                <skipTests>${skipUTs}</skipTests>
+            	</configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -88,6 +94,8 @@
                     <includes>
                         <include>**/*IT.java</include>
                     </includes>
+                     <skipTests>${skipTests}</skipTests>
+                     <skipITs>${skipITs}</skipITs>
                 </configuration>
                 <executions>
                     <execution>
