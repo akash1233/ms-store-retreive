@@ -24,6 +24,8 @@
         <sonar.projectVersion>master</sonar.projectVersion>
         <!--<sonar.test.exclusions>**/test/**/*.*</sonar.test.exclusions>-->
         <!--<sonar.exclusions>**/ai/**/*.*,**/jdbc/**/*.*,**/mpt/**/*.*,**/jcr/**/*.*,**/JDBC*</sonar.exclusions>-->
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyyMMdd_HHmm</maven.build.timestamp.format>
     </properties>
     <dependencies>
         <dependency>
