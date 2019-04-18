@@ -1,7 +1,7 @@
 {
   "tokenFile": "sealights/sltoken.txt",
   "createBuildSessionId": true,
-  "appName": "Cognizant-microservice",
+  "appName": "cts-demoapp",
   "branchName": "master",
   "buildName": "${timestamp}",
   "packagesIncluded": "*org.cts.*",
