@@ -8,13 +8,13 @@ public class StoredValue {
     private String value;
 
 
-    public StoredValue(String varname , String value) {
+    public StoredValue(String varname, String value) {
         this.varname = varname;
         this.value = value;
 
     }
 
-    public StoredValue(){
+    public StoredValue() {
 
     }
 
@@ -34,7 +34,13 @@ public class StoredValue {
         this.varname = varname;
     }
 
+    public boolean testBoooleanValue() {
+        return true;
+
+    }
 }
+
+
 
 
 
