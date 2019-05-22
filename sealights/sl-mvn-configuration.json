@@ -18,7 +18,9 @@
   "logDestination": "console",
   "logLevel": "warn",
   "logFolder": "/tmp",
-  "sealightsJvmParams": {},
+  "sealightsJvmParams": {
+    "sl.featuresData.enableHttpColoring": "true"
+  },
   "failsafeArgLine": "@{sealightsArgLine} -Dsl.testStage=\"Integration Tests\"",
   "enabled": true
 }
