@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by dharma on 8/11/17.
@@ -34,6 +35,7 @@ public class StoreRetreiveServiceImpl implements StoreRetreiveService {
     public StoredValue retreiveByVarName(String varname) {
         for (StoredValue storedValue : storedValues) {
             if (varname.equalsIgnoreCase(storedValue.getVarname())) {
+                System.out.println("Testing sealights");
                 return storedValue;
             }
         }
